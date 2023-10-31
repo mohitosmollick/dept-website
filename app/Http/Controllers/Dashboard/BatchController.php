@@ -20,6 +20,18 @@ class BatchController extends Controller
         ]);
     }
 
+    function batchStudent(Request $request){
+        $batches =  User::where('batch', $request->id)->get();
+        $batch_name =  Batch::find($request->id);
+        $all_batch = Batch::all();
+        return view('pages.BatchSearchResult',[
+            'batches' => $batches,
+            'all_batch' => $all_batch,
+            'batch_name' => $batch_name,
+        ]);
+
+    }
+
     function AddBatch(Request $request){
         $request->validate([
             'batch_name'=> ['required', 'string', 'max:50','unique:batches']
@@ -35,7 +47,7 @@ class BatchController extends Controller
         ){
             return back()->with('success','Added Successfully');
         }else{
-            return  back()->with('fail',' Failed to add Category');
+            return  back()->with('fail',' Failed to add Batch');
         }
     }
 
@@ -68,13 +80,15 @@ class BatchController extends Controller
             'batch_slug' => strtolower(str_replace(' ','-', $request->batch_name)) ,
             'created_at' => Carbon::now(),
         ]);
-        return redirect(route('batchesShow'))->with('success', 'Category updated successfully');
+        return redirect(route('batchesShow'))->with('success', 'Batch updated successfully');
     }
 
     function SearchBatch(){
         $all_students = User::all();
+        $all_batch = Batch::all();
         return view('pages.BatchSearch',[
             'all_students' => $all_students,
+            'all_batch' => $all_batch,
         ]);
     }
 

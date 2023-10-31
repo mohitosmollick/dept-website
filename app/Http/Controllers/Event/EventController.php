@@ -19,14 +19,19 @@ class EventController extends Controller
 
     function singleEvent($id){
         $single_event = Event::find($id);
+        $also_event = Event::where('id','!=',$id)->get();
         return view('Event.SingleEvent',[
             'single_event' => $single_event,
+            'also_event' => $also_event,
         ]);
     }
 
 
     function addEvent(){
-        return view('Event.AddEvent');
+        $event = Event::all();
+        return view('Event.AddEvent',[
+            'event' => $event
+        ]);
     }
 
 
@@ -57,6 +62,61 @@ class EventController extends Controller
 
         return back()->with('success','Successful');
     }
+
+    function editEvent($id){
+        $event = Event::find($id);
+        return view('Event.EditEvent',[
+            'event' => $event,
+        ]);
+    }
+
+    function updateEvent(Request $request){
+
+        Event::find($request->id)->update([
+            'user_id' => Auth::id(),
+            'title' =>$request->title,
+            'slug' => strtolower(str_replace(' ','-', $request->title))  ,
+            'desp_one' => $request->desp_one,
+            'desp_two' => $request->desp_two,
+            'location' => $request->location,
+            'created_at' => Carbon::now(),
+        ]);
+
+        return back()->with('success','Successfully Updated');
+    }
+
+    function updateEventImg(Request $request){
+        $value = Event::where('id' , $request->id)->first();
+
+
+        $request->validate([
+            'image' => 'image|mimes:jpeg,jpg,png,gif,svg|max:5148',
+        ]);
+
+        $delete_from = public_path('/dashboard/events/'.$value->images_one);
+        unlink($delete_from);
+
+        $fileOne = time().'.'.$request->images->extension();
+        $request->images->move(public_path('/dashboard/events/'), $fileOne);
+
+        Event::find($request->id)->update([
+            'images_one' => $fileOne,
+            'created_at' => Carbon::now(),
+        ]);
+
+        return back()->with('successImg','Successfully Updated');
+    }
+
+    function deleteEvent($id){
+        $value = Event::find($id);
+        $delete_from = public_path('/dashboard/events/'.$value->image);
+        unlink($delete_from);
+
+        Event::find($id)->delete();
+        return back()->with('delete','Category Delete Successfully');
+    }
+
+
 
 
 

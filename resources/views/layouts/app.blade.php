@@ -68,23 +68,27 @@
                                 </div>
                                 <ul class="rd-navbar-nav">
                                     <!-- Authentication Links -->
+                                    <li><a href="{{route('home')}}">Home</a></li>
                                     @guest
                                         @if (Route::has('login'))
+                                            <li><a href="{{route('postPage')}}">Post page</a></li>
                                             <li class="nav-item">
                                                 <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
                                             </li>
+
                                         @endif
 
                                         @if (Route::has('register'))
                                             <li class="nav-item">
                                                 <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
                                             </li>
+
                                         @endif
 
                                     @else
-                                        <li><a href="{{route('home')}}">Home</a></li>
+
                                         <li><a href="{{route('postPage')}}">Post page</a></li>
-                                        <li><a href="index.html">Notice</a></li>
+                                        <li><a href="{{route('showNotice')}}">Notice</a></li>
                                         <li><a href="{{route('eventShow')}}">Event</a></li>
 {{--                                        <li class="rd-navbar--has-dropdown rd-navbar-submenu"><a href="#">Posts</a>--}}
 {{--                                            <ul class="rd-navbar-dropdown rd-navbar-open-right">--}}

@@ -83,107 +83,63 @@
         </div>
 
     </div>
-{{--    <div class="col-lg-12">--}}
-{{--        <div class="card">--}}
-{{--            <div class="card-header">--}}
-{{--                <h3>Category list</h3>--}}
-{{--                                @if(session('delete'))--}}
-{{--                                    <span class="text-danger">{{session('delete')}}</span>--}}
-{{--                                @endif--}}
-{{--            </div>--}}
-{{--            <div class="card-body">--}}
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-header">
+                <h3>Category list</h3>
+                                @if(session('delete'))
+                                    <span class="text-danger">{{session('delete')}}</span>
+                                @endif
+            </div>
+            <div class="card-body">
 
-{{--                    <table class="table table-bordered">--}}
-{{--                        <thead>--}}
-{{--                        <tr>--}}
-{{--                            <th>SL</th>--}}
-{{--                            <th>Added by</th>--}}
-{{--                            <th>Category-Name</th>--}}
-{{--                            <th>Slug</th>--}}
-{{--                            <th>Created-at</th>--}}
-{{--                            <th>Action</th>--}}
-{{--                        </tr>--}}
-{{--                        </thead>--}}
-{{--                        <tbody>--}}
-{{--                        @foreach($all_category as $key=>$value)--}}
+                    <table class="table table-bordered">
+                        <thead>
+                        <tr>
+                            <th>SL</th>
+                            <th>Added by</th>
+                            <th>Title</th>
+                            <th>Description One</th>
+                            <th>Description Two</th>
+                            <th>Image</th>
+                            <th>Event Date</th>
+                            <th>Action</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        @foreach($event as $key=>$value)
 
-{{--                            <tr>--}}
-{{--                                <td>{{$key+1}}</td>--}}
-{{--                                <td>--}}
-{{--                                    @php--}}
-{{--                                        if(App\Models\User::where('id',$value->user_id )->exists()){--}}
-{{--                                            echo $value->rel_to_user->name;--}}
-{{--                                        }else{--}}
-{{--                                            echo 'N/A';--}}
-{{--                                        }--}}
-{{--                                    @endphp--}}
-{{--                                </td>--}}
-{{--                                <td>{{$value->category_name}}</td>--}}
-{{--                                <td>{{$value->category_slug}}</td>--}}
-{{--                                <td>{{$value->created_at->diffForHumans()}}</td>--}}
-{{--                                <td>--}}
-{{--                                    <a href="{{route('softDelete', $value->id)}}" class="btn btn-danger shadow btn-xs sharp delete"><i class="fa fa-trash mt-1"></i></a>--}}
+                            <tr>
+                                <td>{{$key+1}}</td>
+                                <td>
+                                    @php
+                                        if(App\Models\User::where('id',$value->user_id )->exists()){
+                                            echo $value->rel_to_user->name;
+                                        }else{
+                                            echo 'N/A';
+                                        }
+                                    @endphp
+                                </td>
+                                <td>{{$value->title}}</td>
+                                <td>{{$value->desp_one}}</td>
+                                <td>{{$value->desp_two}}</td>
+                                <td><img src="{{asset('/dashboard/events')}}/{{$value->images_one}}" width="50px" height="35px" /></td>
+                                <td>{{$value->event_date}}</td>
+                                <td>
+                                    <button name="{{route('deleteEvent', $value->id)}}" type="button" class="delete btn btn-danger shadow btn-xs sharp "><i class="fa fa-trash mt-1"></i></button>
+                                    <a href="{{route('editEvent', $value->id)}}" class="btn btn-secondary shadow btn-xs sharp"><i class="fa fa-pencil mt-1"></i></a>
+                                </td>
+                            </tr>
+                        @endforeach
+                        </tbody>
 
-{{--                                    <button name="{{route('softDelete', $value->id)}}" type="button" class="delete btn btn-danger shadow btn-xs sharp "><i class="fa fa-trash mt-1"></i></button>--}}
-
-{{--                                    <a href="{{route('editCategory', $value->id)}}" class="btn btn-secondary shadow btn-xs sharp"><i class="fa fa-pencil mt-1"></i></a>--}}
-{{--                                </td>--}}
-{{--                            </tr>--}}
-{{--                        @endforeach--}}
-{{--                        </tbody>--}}
-
-{{--                    </table>--}}
+                    </table>
 
 
-{{--            </div>--}}
+            </div>
 
-{{--        </div>--}}
-{{--        <div class="card">--}}
-{{--            <div class="card-header">--}}
-{{--                <h3>Trash Category list</h3>--}}
-{{--            </div>--}}
-{{--            <div class="card-body">--}}
-{{--                    <table class="table table-bordered">--}}
-{{--                        <thead>--}}
-{{--                        <tr>--}}
-{{--                            <th>SL</th>--}}
-{{--                            <th>User Id</th>--}}
-{{--                            <th>Category-Name</th>--}}
-{{--                            <th>Slug</th>--}}
-{{--                            <th>Created-at</th>--}}
-{{--                            <th>Action</th>--}}
-{{--                        </tr>--}}
-{{--                        </thead>--}}
-{{--                        <tbody>--}}
-{{--                        @foreach($trash_category as $key=>$value)--}}
-
-{{--                            <tr>--}}
-{{--                                <td>{{$key+1}}</td>--}}
-{{--                               <td>--}}
-{{--                                    @php--}}
-{{--                                        if(App\Models\User::where('id',$value->user_id )->exists()){--}}
-{{--                                            echo $value->rel_to_user->name;--}}
-{{--                                        }else{--}}
-{{--                                            echo 'N/A';--}}
-{{--                                        }--}}
-{{--                                    @endphp--}}
-{{--                                </td>--}}
-{{--                                </td>--}}
-{{--                                <td>{{$value->category_name}}</td>--}}
-{{--                                <td>{{$value->category_slug}}</td>--}}
-{{--                                <td>{{$value->created_at->diffForHumans()}}</td>--}}
-{{--                                <td>--}}
-{{--                                    <a href="{{ route('hard_delete_category', $value->id)}}" class="btn btn-sm btn-danger shadow ">Delete</a>--}}
-{{--                                    <a href="{{ route('restore_category', $value->id)}}" class="btn btn-sm btn-secondary shadow ">Restore</a>--}}
-{{--                                </td>--}}
-{{--                            </tr>--}}
-{{--                        @endforeach--}}
-{{--                        </tbody>--}}
-{{--                    </table>--}}
-
-{{--            </div>--}}
-{{--        </div>--}}
-{{--    </div>--}}
+        </div>
+    </div>
 
 @endsection
 

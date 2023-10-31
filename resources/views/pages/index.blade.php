@@ -68,45 +68,22 @@
                         <hr class="divider hr-sm-left-0 bg-white">
                         <div class="offset-top-30 offset-md-top-30 text-light">Our Featured Courses are selected through a rigorous process and uniquely created for each semester.</div>
                         <div class="text-left post-vacation-wrap offset-top-30">
+
+                            @foreach($Subject as $value)
                             <article class="post-vacation">
-                                <a class="post-vacation-img-wrap bg-cover bg-image" href="course-details.html" style="background-image: url(assets/images/course-01-150x120.jpg)"></a>
+                                <a class="post-vacation-img-wrap bg-cover bg-image" href="course-details.html" style="background-image: url({{asset('uploads/Subject')}}/{{$value->image}})"></a>
                                 <div class="post-vacation-body">
                                     <div>
-                                        <h6 class="post-vacation-title"><a href="course-details.html">Financial Analyst Course</a></h6>
+                                        <h6 class="post-vacation-title"><a href="course-details.html">{{$value->subject_name}}</a></h6>
                                     </div>
                                     <div class="offset-lg-top-10">
-                                        <p>Charles Banks</p>
+                                        <p>{{$value->start}}</p>
                                     </div>
-                                    <div class="post-vacation-meta offset-top-10"><time class="text-dark" datetime="2018-01-01">June 3, 2018</time>
+                                    <div class="post-vacation-meta offset-top-10"><time class="text-dark" datetime="2018-01-01">{{$value->created_at}}</time>
                                     </div>
                                 </div>
                             </article>
-                            <article class="post-vacation">
-                                <a class="post-vacation-img-wrap bg-cover bg-image" href="course-details.html" style="background-image: url(assets/images/course-02-150x120.jpg)"></a>
-                                <div class="post-vacation-body">
-                                    <div>
-                                        <h6 class="post-vacation-title"><a href="course-details.html">Digital Marketing Course</a></h6>
-                                    </div>
-                                    <div class="offset-lg-top-10">
-                                        <p>Maria Howard</p>
-                                    </div>
-                                    <div class="post-vacation-meta offset-top-10"><time class="text-dark" datetime="2018-01-01">June 3, 2018</time>
-                                    </div>
-                                </div>
-                            </article>
-                            <article class="post-vacation">
-                                <a class="post-vacation-img-wrap bg-cover bg-image" href="course-details.html" style="background-image: url(assets/images/course-03-150x120.jpg)"></a>
-                                <div class="post-vacation-body">
-                                    <div>
-                                        <h6 class="post-vacation-title"><a href="course-details.html">Graphic Design Course</a></h6>
-                                    </div>
-                                    <div class="offset-lg-top-10">
-                                        <p>Steven Carter</p>
-                                    </div>
-                                    <div class="post-vacation-meta offset-top-10"><time class="text-dark" datetime="2018-01-01">June 3, 2018</time>
-                                    </div>
-                                </div>
-                            </article>
+                            @endforeach
                         </div>
                         <div class="offset-top-60"><a class="btn btn-primary" href="course-details.html">View All Courses</a></div>
                     </div>
@@ -140,16 +117,16 @@
             </div>
             <div class="cell-sm-6 cell-md-3">
                 <div class="counter-type-1"><span class="icon theme-icon icon-lg icon-outlined text-madison mdi mdi-domain"></span>
-                    <div class="h3 text-bold text-danger offset-top-15"><span class="counter">8</span><span class="symbol"></span></div>
+                    <div class="h3 text-bold text-danger offset-top-15"><span class="counter">80</span><span class="symbol">%</span></div>
                     <hr class="divider bg-gray-light divider-sm">
                     <div class="offset-top-10">
-                        <h6 class="text-black font-accent">Student Campuses</h6>
+                        <h6 class="text-black font-accent">Job</h6>
                     </div>
                 </div>
             </div>
             <div class="cell-sm-6 cell-md-3">
                 <div class="counter-type-1"><span class="icon theme-icon icon-lg icon-outlined text-madison mdi mdi-account-multiple-outline"></span>
-                    <div class="h3 text-bold text-danger offset-top-15"><span class="counter">6510</span><span class="symbol"></span></div>
+                    <div class="h3 text-bold text-danger offset-top-15"><span class="counter">{{$users}}</span><span class="symbol"></span></div>
                     <hr class="divider bg-gray-light divider-sm">
                     <div class="offset-top-10">
                         <h6 class="text-black font-accent">Students</h6>
@@ -164,98 +141,35 @@
         <h2 class="text-bold">Events</h2>
         <hr class="divider bg-madison">
         <div class="range range-50 offset-top-50 range-xs-center">
-            <div class="cell-sm-6 cell-md-5 cell-xl-3">
-                <article class="post-event">
-                    <div class="post-event-img-overlay"><img class="img-responsive" src="{{asset('/view/assets/images/blog/events-01-420x420.jpg')}}" alt="" width="420" height="420">
-                        <div class="post-event-overlay context-dark"><a class="btn btn-primary" href="#">Book Now</a>
-                            <div class="offset-top-20"><a class="btn btn-default" href="event-page.html">Learn More</a></div>
-                        </div>
-                        <div class="post-event-meta text-center">
-                            <div class="h3 text-bold reveal-inline-block reveal-lg-block">31</div>
-                            <p class="reveal-inline-block reveal-lg-block">September</p><span class="text-bold reveal-inline-block reveal-lg-block inset-left-10 inset-lg-left-0">5:00pm</span>
-                        </div>
-                    </div>
-                    <div class="unit unit-lg unit-lg-horizontal">
-                        <div class="unit-body">
-                            <div class="post-event-body text-lg-left">
-                                <h6><a href="event-page.html">Spacewalking Conference</a></h6>
-                                <ul class="list-inline list-inline-xs">
-                                    <li><a href="team-member-profile.html"><span class="icon theme-icon icon-xxs mdi mdi-account-outline text-middle"></span><span class="inset-left-10 text-dark text-middle">Walter Stanley</span></a></li>
-                                </ul>
+            @foreach($event as $events)
+                <div class="cell-sm-6 cell-md-5 cell-xl-3">
+                    <article class="post-event">
+                        <div class="post-event-img-overlay"><img class="img-responsive" src="{{asset('/dashboard/events')}}/{{$events->images_one}}" alt="" width="420" height="420">
+                            <div class="post-event-overlay context-dark">
+                                <a class="btn btn-primary" href="{{route('singleEvent',$events->id)}}">See More</a>
+                            </div>
+                            <div class="post-event-meta text-center">
+                                <div class="h3 text-bold reveal-inline-block reveal-lg-block">{{($events->event_date)->format('d')}}</div>
+                                <p class="reveal-inline-block reveal-lg-block">{{date('M', strtotime($events->event_date))}}</p><span class="text-bold reveal-inline-block reveal-lg-block inset-left-10 inset-lg-left-0">{{$events->start->format('h:i')}} to {{$events->end->format('h:i A')}}</span>
                             </div>
                         </div>
-                    </div>
-                </article>
-            </div>
-            <div class="cell-sm-6 cell-md-5 cell-xl-3">
-                <article class="post-event">
-                    <div class="post-event-img-overlay"><img class="img-responsive" src="{{asset('/view/assets/images/blog/events-02-420x420.jpg')}}" alt="" width="420" height="420">
-                        <div class="post-event-overlay context-dark"><a class="btn btn-primary" href="#">Book Now</a>
-                            <div class="offset-top-20"><a class="btn btn-default" href="event-page.html">Learn More</a></div>
-                        </div>
-                        <div class="post-event-meta text-center">
-                            <div class="h3 text-bold reveal-inline-block reveal-lg-block">05</div>
-                            <p class="reveal-inline-block reveal-lg-block">May</p><span class="text-bold reveal-inline-block reveal-lg-block inset-left-10 inset-lg-left-0">5:00pm</span>
-                        </div>
-                    </div>
-                    <div class="unit unit-lg unit-lg-horizontal">
-                        <div class="unit-body">
-                            <div class="post-event-body text-lg-left">
-                                <h6><a href="event-page.html">International Conference on Biomolecular Engineering</a></h6>
-                                <ul class="list-inline list-inline-xs">
-                                    <li><a href="team-member-profile.html"><span class="icon theme-icon icon-xxs mdi mdi-account-outline text-middle"></span><span class="inset-left-10 text-dark text-middle">Raymond Salazar</span></a></li>
-                                </ul>
+                        <div class="unit unit-lg unit-lg-horizontal">
+                            <div class="unit-body">
+                                <div class="post-event-body text-lg-left">
+                                    <h6><a href="{{route('singleEvent',$events->id)}}">{{$events->title}}</a></h6>
+                                    <ul class="list-inline list-inline-xs">
+                                        <li><a href="team-member-profile.html"><span class="icon theme-icon icon-xxs mdi mdi-account-outline text-middle"></span><span class="inset-left-10 text-dark text-middle">
+                                                   {{$events->rel_to_user->name}}
+                                                </span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </article>
-            </div>
-            <div class="cell-sm-6 cell-md-5 cell-xl-3">
-                <article class="post-event">
-                    <div class="post-event-img-overlay"><img class="img-responsive" src="{{asset('/view/assets/images/blog/events-03-420x420.jpg')}}" alt="" width="420" height="420">
-                        <div class="post-event-overlay context-dark"><a class="btn btn-primary" href="#">Book Now</a>
-                            <div class="offset-top-20"><a class="btn btn-default" href="event-page.html">Learn More</a></div>
-                        </div>
-                        <div class="post-event-meta text-center">
-                            <div class="h3 text-bold reveal-inline-block reveal-lg-block">17</div>
-                            <p class="reveal-inline-block reveal-lg-block">June</p><span class="text-bold reveal-inline-block reveal-lg-block inset-left-10 inset-lg-left-0">5:00pm</span>
-                        </div>
-                    </div>
-                    <div class="unit unit-lg unit-lg-horizontal">
-                        <div class="unit-body">
-                            <div class="post-event-body text-lg-left">
-                                <h6><a href="event-page.html">Graphic Design Workshop</a></h6>
-                                <ul class="list-inline list-inline-xs">
-                                    <li><a href="team-member-profile.html"><span class="icon theme-icon icon-xxs mdi mdi-account-outline text-middle"></span><span class="inset-left-10 text-dark text-middle">Bruce Hawkins</span></a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </article>
-            </div>
-            <div class="cell-sm-6 cell-md-5 cell-xl-3">
-                <article class="post-event">
-                    <div class="post-event-img-overlay"><img class="img-responsive" src="{{asset('/view/assets/images/blog/events-04-420x420.jpg')}}" alt="" width="420" height="420">
-                        <div class="post-event-overlay context-dark"><a class="btn btn-primary" href="#">Book Now</a>
-                            <div class="offset-top-20"><a class="btn btn-default" href="event-page.html">Learn More</a></div>
-                        </div>
-                        <div class="post-event-meta text-center">
-                            <div class="h3 text-bold reveal-inline-block reveal-lg-block">06</div>
-                            <p class="reveal-inline-block reveal-lg-block">June</p><span class="text-bold reveal-inline-block reveal-lg-block inset-left-10 inset-lg-left-0">5:00pm</span>
-                        </div>
-                    </div>
-                    <div class="unit unit-lg unit-lg-horizontal">
-                        <div class="unit-body">
-                            <div class="post-event-body text-lg-left">
-                                <h6><a href="event-page.html">History of Art</a></h6>
-                                <ul class="list-inline list-inline-xs">
-                                    <li><a href="team-member-profile.html"><span class="icon theme-icon icon-xxs mdi mdi-account-outline text-middle"></span><span class="inset-left-10 text-dark text-middle">Danielle Garza</span></a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </article>
-            </div>
+                    </article>
+                </div>
+            @endforeach
         </div>
         <div class="offset-top-50 offset-lg-top-56"><a class="btn btn-icon btn-icon-right btn-primary" href="events.html"><span class="icon fa-arrow-right"></span><span>View Event Calendar</span></a></div>
     </div>

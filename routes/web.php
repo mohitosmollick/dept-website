@@ -5,10 +5,13 @@ use App\Http\Controllers\Dashboard\CategoryController;
 use App\Http\Controllers\Dashboard\ChairmanController;
 use App\Http\Controllers\Dashboard\dashboardController;
 use App\Http\Controllers\Dashboard\SliderController;
+use App\Http\Controllers\Dashboard\SubjectController;
 use App\Http\Controllers\Dashboard\userController;
 use App\Http\Controllers\Event\EventController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\Notice\NoticeController;
 use App\Http\Controllers\Post\PostController;
+use App\Http\Controllers\Role\RoleController;
 use App\Http\Controllers\SubCat\SubCatContoller;
 use Illuminate\Support\Facades\Route;
 
@@ -89,6 +92,7 @@ Route::post('update/photo',[ChairmanController::class,'updatePhoto'])->name('upd
 //Search Batch
 Route::get('search/batch',[BatchController::class,'SearchBatch'])->name('SearchBatch');
 Route::get('show/batch',[BatchController::class,'batchesShow'])->name('batchesShow');
+Route::post('search/batches',[BatchController::class,'batchStudent'])->name('batchStudent');
 
 //Post create
 //Route::get('post/create',[PostController::class,'postCreate'])->name('postCreate');
@@ -111,5 +115,37 @@ Route::get('event/show',[EventController::class,'eventShow'])->name('eventShow')
 Route::get('event/{id}',[EventController::class,'singleEvent'])->name('singleEvent');
 Route::get('add/event',[EventController::class,'addEvent'])->name('addEvent');
 Route::post('create/event',[EventController::class,'createEvent'])->name('createEvent');
+Route::get('edit/event/{id}',[EventController::class,'editEvent'])->name('editEvent');
+Route::get('delete/event/{id}',[EventController::class,'deleteEvent'])->name('deleteEvent');
+Route::post('update/event',[EventController::class,'updateEvent'])->name('updateEvent');
+Route::post('update/event/img',[EventController::class,'updateEventImg'])->name('updateEventImg');
+
+//Notice
+Route::get('notice/show',[NoticeController::class,'showNotice'])->name('showNotice');
+Route::get('notice/add',[NoticeController::class,'addNotice'])->name('addNotice');
+Route::post('notice/create',[NoticeController::class,'createNotice'])->name('createNotice');
+Route::get('delete/notice/{id}',[NoticeController::class,'deleteNotice'])->name('deleteNotice');
+Route::get('edit/notice/{id}',[NoticeController::class,'editNotice'])->name('editNotice');
+Route::post('update/notice',[NoticeController::class,'updateNotice'])->name('updateNotice');
+Route::post('update/notice/image',[NoticeController::class,'updateNoticeImg'])->name('updateNoticeImg');
+
+//Subject
+Route::get('show/subject',[SubjectController::class,'subject'])->name('subject');
+Route::post('add/subject',[SubjectController::class,'addSubject'])->name('addSubject');
+Route::get('edit/subject/{id}',[SubjectController::class,'editSubject'])->name('editSubject');
+Route::post('update/subject',[SubjectController::class,'updateSubject'])->name('updateSubject');
+Route::get('delete/subject/{id}',[SubjectController::class,'deleteSubject'])->name('deleteSubject');
+Route::post('update/subject/image',[SubjectController::class,'SubjectImageUp'])->name('SubjectImageUp');
+
+//roleManager
+Route::get('permission',[RoleController::class,'Permission'])->name('Permission');
+Route::post('add/permission',[RoleController::class,'addPermission'])->name('addPermission');
+Route::get('role',[RoleController::class,'roleManager'])->name('roleManager');
+Route::post('add/role',[RoleController::class,'roleAdd'])->name('roleAdd');
+Route::post('add/user/role',[RoleController::class,'addUserRole'])->name('addUserRole');
+
+//remove roll
+Route::get('remove/user/role/{id}',[RoleController::class,'removeRole'])->name('removeRole');
+
 
 

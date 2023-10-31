@@ -27,7 +27,7 @@
                         @csrf
                         <div class="form-group">
                             <select class="form-select" id="inputGroupSelect04"  name="id" id="batches">
-                                <option value="" selected>Batch...</option>
+                                <option  selected>Batch...</option>
                                 @foreach($all_batch as $batch)
                                 <option value="{{$batch->id}}">{{$batch->batch_name}}</option>
                                 @endforeach
@@ -46,11 +46,11 @@
 
     <section class="section theme-background bg-cover section-70 section-md-114 bg-default">
         <div class="shell">
-            <h4 class="text-bold"> Search Batch  </h4>
+            <h4 class="text-bold"> {{$batch_name->batch_name}} </h4>
             <hr class="divider bg-madison">
             <div class="range range-30 text-md-left offset-top-60 grid" style="--bs-columns: 4; --bs-gap: .1rem;">
 
-                @foreach($all_students as $student)
+                @foreach($batches as $student)
                 <div class="card p-2 mx-2">
                     <figure class="thumbnail-classic thumbnail-md">
                         <div class="thumbnail-classic-img-wrap">

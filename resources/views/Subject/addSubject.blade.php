@@ -4,21 +4,40 @@
         <div class="col-lg-6">
             <div class="card">
                 <div class="card-header">
-                    <h3>Add Slider</h3>
+                    <h3>Add Subject</h3>
                     @if(session('success'))
                         <span class="text-success">{{session('success')}}</span>
                     @endif
-                    <img src="{{asset('uploads/slider')}}/{{session('image')}}" width="50px" height="35px"/>
+                    <img src="{{asset('uploads/Subject')}}/{{session('image')}}" width="50px" height="35px"/>
+
                 </div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{route('AddSlider')}}"  enctype="multipart/form-data">
+                    <form method="POST" action="{{route('addSubject')}}" enctype="multipart/form-data" >
                         @csrf
+
+                        <div class="form-group">
+                            <label for="name">Chairmen Name</label>
+                            <input id="name" type="text" name="subject_name"  class="form-control @error('subject_name') is-invalid @enderror "  autofocus required >
+                            @error('subject_name') <span class="text-danger">{{$message}}</span> @enderror
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label form-label-outside" for="bio">Bio</label>
+                            <textarea class="form-control form-validation-inside  @error('start') is-invalid @enderror"  required  id="bio" name="start"  style="height: 100px"></textarea>
+                            @error('start') <span class="text-danger">{{$message}}</span> @enderror
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label form-label-outside" for="about">About Department(1000+ words)</label>
+                            <textarea class="form-control form-validation-inside  @error('about') is-invalid @enderror" required  id="about" name="about" style="height: 200px"></textarea>
+                            @error('about') <span class="text-danger">{{$message}}</span> @enderror
+                        </div>
                         <div class="form-group">
                             <label for="">Image</label>
                             <input    type="file" class="form-control" name="image"  value="">
                             @error('image')<small class="text-danger"> {{$message}}</small>@enderror
                         </div>
+
 
                         <div class="form-group mt-2">
                             <button type="submit"  class="btn btn-danger btn-sm">Save</button>
@@ -28,49 +47,41 @@
             </div>
 
         </div>
-        <div class="col-lg-6">
-
-        </div>
-
-    </div>
-    <div class="col-lg-12">
-        <div class="card">
-            <div class="card-header">
-                <h3>Slider list</h3>
-                                @if(session('delete'))
-                                    <span class="text-danger">{{session('delete')}}</span>
-                                @endif
-            </div>
-            <div class="card-body">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-header">
+                    <h3>Subject List</h3>
+                    @if(session('delete'))
+                        <span class="text-danger">{{session('delete')}}</span>
+                    @endif
+                </div>
+                <div class="card-body">
 
                     <table class="table table-bordered">
                         <thead>
                         <tr>
                             <th>SL</th>
-                            <th>Added by</th>
-                            <th>Slider Image</th>
+                            <th>Subject Name</th>
+                            <th>Added By</th>
+                            <th>About</th>
+                            <th>Image</th>
                             <th>Created-at</th>
                             <th>Action</th>
                         </tr>
                         </thead>
                         <tbody>
-                        @foreach($slider as $key=>$value)
+                        @foreach($Subject as $key=>$value)
 
                             <tr>
                                 <td>{{$key+1}}</td>
-                                <td>
-                                    @php
-                                        if(App\Models\User::where('id',$value->user_id )->exists()){
-                                            echo $value->rel_to_user->name;
-                                        }else{
-                                            echo 'N/A';
-                                        }
-                                    @endphp
-                                </td>
-                                <td><img src="{{asset('uploads/slider')}}/{{$value->slides}}" width="50px" height="35px" /></td>
+                                <td>{{$value->subject_name}}</td>
+                                <td>{{$value->start}}</td>
+                                <td>{{$value->about}}</td>
+                                <td><img src="{{asset('uploads/Subject')}}/{{$value->image}}" width="50px" height="35px" /></td>
                                 <td>{{$value->created_at->diffForHumans()}}</td>
                                 <td>
-                                    <button name="{{route('softDelete', $value->id)}}" type="button" class="delete btn btn-danger shadow btn-xs sharp "><i class="fa fa-trash mt-1"></i></button>
+                                    <button name="{{route('deleteSubject', $value->id)}}" type="button" class="delete btn btn-danger shadow btn-xs sharp "><i class="fa fa-trash mt-1"></i></button>
+                                    <a href="{{route('editSubject', $value->id)}}"  class=" btn btn-primary shadow btn-xs sharp "><i class="fa fa-pencil mt-1"></i></a>
 
                                 </td>
                             </tr>
@@ -80,10 +91,13 @@
                     </table>
 
 
-            </div>
+                </div>
 
+            </div>
         </div>
+
     </div>
+
 
 @endsection
 

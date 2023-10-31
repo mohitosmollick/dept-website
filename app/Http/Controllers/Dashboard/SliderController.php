@@ -35,7 +35,6 @@ class SliderController extends Controller
             ]);
             return back()->with('success','Successful')->with('image',$fileName);
 
-
     }
 
     function softDelete($id){

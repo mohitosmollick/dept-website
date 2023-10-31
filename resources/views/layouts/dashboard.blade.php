@@ -208,11 +208,19 @@
     <div class="deznav">
         <div class="deznav-scroll">
             <ul class="metismenu" id="menu">
-{{--                <li><a  href="{{route('dashboard')}}" aria-expanded="false">--}}
-{{--                        <i class="flaticon-381-networking"></i>--}}
-{{--                        <span class="nav-text">Dashboard</span>--}}
-{{--                    </a>--}}
-{{--                </li>--}}
+
+                <li><a class="has-arrow ai-icon" href="#" aria-expanded="false">
+                        <i class="flaticon-381-television"></i>
+                        <span class="nav-text">Role Manage</span>
+                    </a>
+                    <ul aria-expanded="false">
+                        <li><a href="{{route('roleManager')}}">Add Role</a></li>
+                    </ul>
+                    <ul aria-expanded="false">
+                        <li><a href="{{route('Permission')}}">Permission</a></li>
+                    </ul>
+                </li>
+
 
                 <li><a class="has-arrow ai-icon" href="#" aria-expanded="false">
                         <i class="flaticon-381-television"></i>
@@ -239,6 +247,7 @@
                     </ul>
                 </li>
 
+                @can('category_manage')
                 <li><a class="has-arrow ai-icon" href="#" aria-expanded="false">
                         <i class="flaticon-381-television"></i>
                         <span class="nav-text">Category</span>
@@ -247,6 +256,7 @@
                         <li><a href="{{route('category.show')}}">Category List</a></li>
                     </ul>
                 </li>
+                @endcan
                 <li><a class="has-arrow ai-icon" href="#" aria-expanded="false">
                         <i class="flaticon-381-television"></i>
                         <span class="nav-text">Sub_Category</span>
@@ -255,15 +265,7 @@
                         <li><a href="{{route('SubCatShow')}}">Sub Category List</a></li>
                     </ul>
                 </li>
-                <li><a class="has-arrow ai-icon" href="#" aria-expanded="false">
-                        <i class="flaticon-381-television"></i>
-                        <span class="nav-text">Product</span>
-                    </a>
-{{--                    <ul aria-expanded="false">--}}
-{{--                        <li><a href="{{url('/add_product')}}">Add Product</a></li>--}}
-{{--                        <li><a href="{{url('/edit_product')}}">Edit Product</a></li>--}}
-{{--                    </ul>--}}
-                </li>
+
                 <li><a class="has-arrow ai-icon" href="#" aria-expanded="false">
                         <i class="flaticon-381-television"></i>
                         <span class="nav-text">Slider</span>
@@ -274,10 +276,27 @@
                 </li>
                 <li><a class="has-arrow ai-icon" href="#" aria-expanded="false">
                         <i class="flaticon-381-television"></i>
+                        <span class="nav-text">Notice</span>
+                    </a>
+                    <ul aria-expanded="false">
+                        <li><a href="{{ route('addNotice') }}">Add Notice</a></li>
+                    </ul>
+                </li>
+                <li><a class="has-arrow ai-icon" href="#" aria-expanded="false">
+                        <i class="flaticon-381-television"></i>
                         <span class="nav-text">About</span>
                     </a>
                     <ul aria-expanded="false">
                         <li><a href="{{ route('about') }}">Add About</a></li>
+
+                    </ul>
+                </li>
+                <li><a class="has-arrow ai-icon" href="#" aria-expanded="false">
+                        <i class="flaticon-381-television"></i>
+                        <span class="nav-text">Subject</span>
+                    </a>
+                    <ul aria-expanded="false">
+                        <li><a href="{{ route('subject') }}">Add Subject</a></li>
 
                     </ul>
                 </li>
