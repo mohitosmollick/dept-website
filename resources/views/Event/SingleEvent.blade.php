@@ -40,7 +40,7 @@
                                 </div>
                             </div>
                             <div class="offset-top-20">
-                                <p>Bruce has been involved in graphic design education for over 10 years. He is a passionate designer and design educator, believing that what matters above all else is a great idea executed appropriately and brilliantly.</p>
+                                <p></p>
                             </div>
                         </div>
                     </div>
@@ -69,8 +69,8 @@
                             <div class="text-subline"></div>
                         </div>
                         <div class="offset-top-20">
-                            <p>All essential materials and equipment are provided, however, we encourage students to bring an A3 portfolio folder (including a minimum of 5 plastic sleeves) and a USB drive.</p>
-                            <p>If you'd like to enroll, download and complete this form, and then e-mail it to mail@demolink.org with the subject line "JWU 2018 Workshop".</p>
+                            <p>All essential materials and equipment are provided, n A3 portfolio folder (including a minimum of 5 plastic sleeves) and a USB drive.</p>
+                            <p>If you'd like to enroll, download and complete tmolink.org with the subject line "JWU 2018 Workshop".</p>
                         </div>
                         <div class="offset-top-30"><a class="btn btn-primary" href="#">Apply Now</a></div>
                     </div>
@@ -93,8 +93,7 @@
                                 </div>
                                 <div class="post-event-meta text-center">
                                     <div class="h3 text-bold reveal-inline-block reveal-lg-block">{{($events->event_date)->format('d')}}</div>
-                                    <p class="reveal-inline-block reveal-lg-block">{{date('M', strtotime($events->event_date))}}</p><span class="text-bold reveal-inline-block reveal-lg-block inset-left-10 inset-lg-left-0">{{$events->start->format('h:i')}} to {{$events->end->format('h:i A')}}
-</span>
+                                    <p class="reveal-inline-block reveal-lg-block">{{date('M', strtotime($events->event_date))}}</p><span class="text-bold reveal-inline-block reveal-lg-block inset-left-10 inset-lg-left-0">{{$events->start->format('h:i')}} to {{$events->end->format('h:i A')}}</span>
                                 </div>
                             </div>
                             <div class="unit unit-lg unit-lg-horizontal">

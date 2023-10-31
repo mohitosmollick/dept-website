@@ -68,37 +68,34 @@
                                 </div>
                                 <ul class="rd-navbar-nav">
                                     <!-- Authentication Links -->
-                                    <li><a href="{{route('home')}}">Home</a></li>
+
                                     @guest
+                                        <li  class="{{Request::is('/')?'active':''}}"><a  href="{{route('home')}}">Home</a></li>
+                                        <li class="{{Request::is('posts') ? 'active':''}}"><a href="{{route('postPage')}}">Post page</a></li>
                                         @if (Route::has('login'))
-                                            <li><a href="{{route('postPage')}}">Post page</a></li>
-                                            <li class="nav-item">
+                                            <li class="nav-item {{Request::is('login') ? 'active':''}}">
                                                 <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
                                             </li>
 
                                         @endif
 
                                         @if (Route::has('register'))
-                                            <li class="nav-item">
+                                            <li class="nav-item {{Request::is('register') ? 'active':''}}">
                                                 <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
                                             </li>
 
                                         @endif
 
                                     @else
+                                        <li  class="{{Request::is('/')?'active':''}}"><a  href="{{route('home')}}">Home</a></li>
+                                        <li class="{{Request::is('register') ? 'active':''}}"><a href="{{route('postPage')}}">Post page</a></li>
 
-                                        <li><a href="{{route('postPage')}}">Post page</a></li>
+                                        @can('user_role')
+                                        <li><a href="{{route('postCreate')}}">Create Post</a></li>
+                                        <li><a href="{{route('SearchBatch')}}">Batch</a></li>
+                                        @endcan
                                         <li><a href="{{route('showNotice')}}">Notice</a></li>
                                         <li><a href="{{route('eventShow')}}">Event</a></li>
-{{--                                        <li class="rd-navbar--has-dropdown rd-navbar-submenu"><a href="#">Posts</a>--}}
-{{--                                            <ul class="rd-navbar-dropdown rd-navbar-open-right">--}}
-{{--                                                <li><a href="{{route('postPage')}}">Post page</a></li>--}}
-{{--                                                <li><a href="{{route('postCreate')}}">Create Post</a></li>--}}
-{{--                                            </ul>--}}
-{{--                                        </li>--}}
-                                        <li><a href="{{route('postCreate')}}">Create Post</a></li>
-
-                                        <li><a href="{{route('SearchBatch')}}">Batch</a></li>
                                         <li>
                                             <img class="rounded-circle"  src="{{asset('uploads/users')}}/{{Auth::User()->image}}" width="25" height="25" alt=""/>
                                             <a href="#">{{ Auth::user()->name }}</a>
