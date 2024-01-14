@@ -65,8 +65,7 @@
                                     @endforeach
                                 </td>
                                 <td>
-                                    <button name="{{route('softDelete', $value->id)}}" type="button" class="delete btn btn-danger shadow btn-xs sharp "><i class="fa fa-trash mt-1"></i></button>
-                                    <a href="{{route('editCategory', $value->id)}}" class="btn btn-secondary shadow btn-xs sharp"><i class="fa fa-pencil mt-1"></i></a>
+                                    <a href="{{route('editPermission', $value->id)}}" class="btn btn-secondary shadow btn-xs sharp"><i class="fa fa-pencil mt-1"></i></a>
                                 </td>
                             </tr>
                         @endforeach
@@ -147,8 +146,8 @@
                                     @endforeach
                                 </td>
                                 <td>
-                                    <button name="{{route('removeRole', $value->id)}}" type="button" class="delete btn btn-danger shadow btn-xs sharp "><i class="fa fa-trash mt-1"></i></button>
-                                    <a href="{{route('removeRole', $value->id)}}" class="btn btn-secondary shadow btn-xs sharp"><i class="fa fa-pencil mt-1"></i></a>
+                                    <a href="{{route('editPermission', $value->id)}}" class="btn btn-secondary shadow btn-xs sharp"><i class="fa fa-pencil mt-1"></i></a>
+                                    <button name="{{route('user.delete', $value->id)}}" type="button" class="delete btn btn-danger shadow btn-xs sharp "><i class="fa fa-trash mt-1"></i></button>
                                 </td>
                             </tr>
                         @endforeach

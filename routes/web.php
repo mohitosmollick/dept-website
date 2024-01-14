@@ -99,11 +99,7 @@ Route::post('search/batches',[BatchController::class,'batchStudent'])->name('bat
 Route::get('post/create',[PostController::class,'postCreate'])->name('postCreate');
 Route::post('getSubCategory',[PostController::class,'addSubCategory'])->name('getSubCategory');
 Route::post('add/post',[PostController::class,'AddPost'])->name('AddPost');
-//Route::get('cat_delete/{cat_id}',[BatchController::class, 'softDelete'])->name('softDelete');
-//Route::get('edit/batch/{cat_id}',[BatchController::class,'editBatch'])->name('editBatch');
-//Route::post('update/batch',[BatchController::class,'updateBatch'])->name('updateBatch');
-//Route::get('restore/batch/{cat_id}',[BatchController::class,'restoreBatch'])->name('restoreBatch');
-//Route::get('delete/batch/{cat_id}',[BatchController::class,'deleteBatch'])->name('deleteBatch');
+
 
 //Post page front
 Route::get('posts',[PostController::class,'postPage'])->name('postPage');
@@ -144,8 +140,12 @@ Route::get('role',[RoleController::class,'roleManager'])->name('roleManager');
 Route::post('add/role',[RoleController::class,'roleAdd'])->name('roleAdd');
 Route::post('add/user/role',[RoleController::class,'addUserRole'])->name('addUserRole');
 
-//remove roll
-Route::get('remove/user/role/{id}',[RoleController::class,'removeRole'])->name('removeRole');
+
+Route::get('edit/permission/{id}',[RoleController::class,'editPermission'])->name('editPermission');
+
+//add roll
+Route::post('update/permission',[RoleController::class,'PermissionUpdate'])->name('PermissionUpdate');
+
 
 
 

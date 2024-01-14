@@ -33,6 +33,9 @@ class User extends Authenticatable
         'sex',
 
     ];
+    function rel_to_batch(){
+        return $this-> belongsTo(Batch::class,'batch');
+    }
 
     /**
      * The attributes that should be hidden for serialization.

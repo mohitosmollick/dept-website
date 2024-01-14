@@ -20,8 +20,11 @@
                         <tr>
                             <th>SL</th>
                             <th>Name</th>
-                            <th>Email</th>
-                            <th>Password</th>
+
+                            <th>Phone</th>
+                            <th>Batch</th>
+                            <th>Image</th>
+                            <th>bio</th>
                             <th>Created-at</th>
                             <th>Action</th>
                         </tr>
@@ -32,8 +35,15 @@
                             <tr>
                                 <td>{{$users->firstitem()+ $key}}</td>
                                 <td>{{$value->name}}</td>
-                                <td>{{$value->email}}</td>
-                                <td >{{$value->lname}}</td>
+
+                                <td >{{$value->phone}}</td>
+                                <td >
+                                    {{$value->rel_to_batch->batch_name}}
+                                </td>
+                                <td >
+                                    <img src="{{asset('uploads/users')}}/{{$value->image}}" width="50px" height="35px" />
+                                </td>
+                                <td >{{$value->bio}}</td>
                                 <td>{{$value->created_at->diffForHumans()}}</td>
                                 <td>
                                     <a href="{{route('user.delete', $value->id)}}" class="btn btn-danger shadow btn-xs sharp"><i class="fa fa-trash"></i></a>

@@ -57,6 +57,32 @@
         </div>
     </div>
 </section>
+
+<section class="section theme-background bg-cover section-70 section-md-114 bg-catskill">
+    <div class="shell-wide">
+        <h2 class="text-bold">Posts</h2>
+        <hr class="divider bg-madison">
+        <div class="cell-md-8">
+            <div class="range range-30 text-sm-left range-xs-center">
+                @foreach($posts as $post)
+                    <div class="cell-sm-4">
+                        <article class="post-news">
+                            <a href="{{route('singlePost', $post->id)}}"><img class="img-responsive" src="{{asset('/uploads/Posts')}}/{{$post->images_one}}" width="370" height="240" alt=""></a>
+                            <div class="post-news-body">
+                                <h6><a href="{{route('singlePost', $post->id)}}">{{$post->title}}</a></h6>
+                                <div class="offset-top-20">
+                                    <p>{{$post->desp_one}}</p>
+                                </div>
+                                <div class="post-news-meta offset-top-20"><span class="icon theme-icon icon-xs mdi mdi-calendar-clock text-middle text-madison"></span><span class="text-middle inset-left-10 text-italic text-black">{{$post->created_at->diffForHumans()}}</span></div>
+                            </div>
+                        </article>
+                    </div>
+                @endforeach
+            </div>
+        </div>
+        <div class="offset-top-50 offset-lg-top-56"><a class="btn btn-icon btn-icon-right btn-primary" href="{{route('postPage')}}"><span class="icon fa-arrow-right"></span><span>View All</span></a></div>
+    </div>
+</section>
 <section class="section context-dark section-image-aside section-image-aside-left">
     <div class="theme-background bg-cover section-70 section-md-114 bg-madison">
         <div class="shell">
@@ -171,47 +197,9 @@
                 </div>
             @endforeach
         </div>
-        <div class="offset-top-50 offset-lg-top-56"><a class="btn btn-icon btn-icon-right btn-primary" href="events.html"><span class="icon fa-arrow-right"></span><span>View Event Calendar</span></a></div>
+        <div class="offset-top-50 offset-lg-top-56"><a class="btn btn-icon btn-icon-right btn-primary" href="{{route('eventShow')}}"><span class="icon fa-arrow-right"></span><span>View All</span></a></div>
     </div>
 </section>
-<section class="section theme-background bg-cover section-70 section-xl-100 section-xl-bottom-114 bg-madison context-dark position-relative">
-    <div class="owl-carousel owl-carousel-default veil-xl-owl-dots veil-owl-nav reveal-xl-owl-nav" data-items="1" data-nav="true" data-autoplay="true" data-dots="true" data-nav-class="[&quot;owl-prev fa-angle-left&quot;, &quot;owl-next fa-angle-right&quot;]">
-        <div>
-            <div class="shell">
-                <div class="range range-xs-center range-xs-middle">
-                    <div class="cell-sm-9 cell-sm-push-1">
-                        <div class="quote-classic-boxed text-center">
-                            <div class="quote-body"><q>When you work full-time while studying, you need to sacrifice personal time, which meant that I took my studies seriously. My ambition was not only to complete my degree successfully but to make the best out of the time spent studying.</q>
-                                <div class="offset-top-30 text-center"><cite class="font-accent">Debra Banks</cite>
-                                    <div class="offset-top-5">
-                                        <p class="text-light text-italic">Diploma for Graduates in Art, USA</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div>
-            <div class="shell">
-                <div class="range range-xs-center range-xs-middle">
-                    <div class="cell-sm-9 cell-sm-push-1">
-                        <div class="quote-classic-boxed text-center">
-                            <div class="quote-body"><q>When I researched the programmes available I realized that the University was offering exactly the type of programme in international development that interested me.</q>
-                                <div class="offset-top-30 text-center"><cite class="font-accent">Steven Alvarez</cite>
-                                    <div class="offset-top-5">
-                                        <p class="text-light text-italic">Diploma for Graduates in International Development, USA</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-<section class="section theme-background bg-cover section-70 section-md-114 bg-catskill">
+
 
 @endsection

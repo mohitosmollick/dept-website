@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Hash;
 class userController extends Controller
 {
     public function userShow(){
-        $users = User::where('id', '!=', Auth::id())->paginate(2);
+        $users = User::where('id', '!=', Auth::id())->paginate(5);
         $totalUser = User::count();
         return view('dashboard.userList',[
            'users' => $users,
@@ -25,6 +25,10 @@ class userController extends Controller
 
 
     public function userDelete($user_id){
+        $value = User::find($user_id);
+        $delete_from = public_path('/uploads/users/'.$value->image);
+        unlink($delete_from);;
+
         User::find($user_id)->delete();
         return back()->with('success','Delete successfully');
     }

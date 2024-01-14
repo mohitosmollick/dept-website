@@ -63,7 +63,7 @@
                             <div class="rd-navbar-mobile-scroll">
                                 <div class="rd-navbar-mobile-header-wrap">
                                     <div class="rd-navbar-mobile-brand">
-                                        <a href="index.html"><img src="assets/images/logo-default-2-144x122-1.png" alt="" srcset="assets/images/logo-300x222.png 2x"></a>
+{{--                                        <a href="index.html"><img src="{{asset('uploads/users')}}/{{Auth::user()->image}}" alt=""></a>--}}
                                     </div>
                                 </div>
                                 <ul class="rd-navbar-nav">
@@ -71,7 +71,7 @@
 
                                     @guest
                                         <li  class="{{Request::is('/')?'active':''}}"><a  href="{{route('home')}}">Home</a></li>
-                                        <li class="{{Request::is('posts') ? 'active':''}}"><a href="{{route('postPage')}}">Post page</a></li>
+                                        <li class="{{Request::is('posts') ? 'active':''}}"><a href="{{route('postPage')}}">Posts</a></li>
                                         @if (Route::has('login'))
                                             <li class="nav-item {{Request::is('login') ? 'active':''}}">
                                                 <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
@@ -88,19 +88,20 @@
 
                                     @else
                                         <li  class="{{Request::is('/')?'active':''}}"><a  href="{{route('home')}}">Home</a></li>
-                                        <li class="{{Request::is('register') ? 'active':''}}"><a href="{{route('postPage')}}">Post page</a></li>
+                                        <li class="{{Request::is('posts') ? 'active':''}}"><a href="{{route('postPage')}}">Posts</a></li>
 
                                         @can('user_role')
-                                        <li><a href="{{route('postCreate')}}">Create Post</a></li>
-                                        <li><a href="{{route('SearchBatch')}}">Batch</a></li>
+                                        <li class="{{Request::is('post/create')?'active':''}}"><a href="{{route('postCreate')}}">Create Post</a></li>
+                                        <li class="{{Request::is('search/batch')?'active':''}}"><a href="{{route('SearchBatch')}}">Batch</a></li>
                                         @endcan
-                                        <li><a href="{{route('showNotice')}}">Notice</a></li>
-                                        <li><a href="{{route('eventShow')}}">Event</a></li>
+                                        <li class="{{Request::is('notice/show')?'active':''}}"><a href="{{route('showNotice')}}">Notice</a></li>
+                                        <li class="{{Request::is('event/show')?'active':''}}"><a href="{{route('eventShow')}}">Event</a></li>
                                         <li>
                                             <img class="rounded-circle"  src="{{asset('uploads/users')}}/{{Auth::User()->image}}" width="25" height="25" alt=""/>
                                             <a href="#">{{ Auth::user()->name }}</a>
 
                                             <ul class="rd-navbar-dropdown">
+                                                @can('user_role')
                                                 <li>
                                                     <a  href='{{route('profile')}}'>
                                                         Profile
@@ -112,6 +113,7 @@
                                                         Setting
                                                     </a>
                                                 </li>
+                                                @endcan
                                                 <li>
                                                     <a href="{{ route('logout') }}"
                                                        onclick="event.preventDefault();
@@ -161,7 +163,7 @@
                 <div class="shell">
                     <div class="range range-50 range-lg-justify range-xs-center">
                         <div class="cell-md-3 cell-lg-3">
-                            <a class="reveal-inline-block" href="index.html"><img src="{{asset('/view/assets/images/logo-default-2-144x122-1.png')}}" alt="" srcset="assets/images/logo-default-2-144x122-1.png"></a>
+                            <a class="reveal-inline-block" href="{{route('profile')}}"><img src="{{asset('/view/assets/images/logo-default-2-144x122-1.png')}}" ></a>
                             <div class="offset-top-30 text-center">
                                 <ul class="list-inline list-inline-xs list-inline-madison">
                                     <li>

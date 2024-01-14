@@ -208,7 +208,7 @@
     <div class="deznav">
         <div class="deznav-scroll">
             <ul class="metismenu" id="menu">
-                
+                @can('role_manage')
                 <li><a class="has-arrow ai-icon" href="#" aria-expanded="false">
                         <i class="flaticon-381-television"></i>
                         <span class="nav-text">Role Manage</span>
@@ -220,8 +220,8 @@
                         <li><a href="{{route('Permission')}}">Permission</a></li>
                     </ul>
                 </li>
-
-
+                @endcan
+                @can('event_manage')
                 <li><a class="has-arrow ai-icon" href="#" aria-expanded="false">
                         <i class="flaticon-381-television"></i>
                         <span class="nav-text">Event</span>
@@ -230,6 +230,8 @@
                         <li><a href="{{route('addEvent')}}">Add List</a></li>
                     </ul>
                 </li>
+                @endcan
+                @can('user_manage')
                 <li><a class="has-arrow ai-icon" href="#" aria-expanded="false">
                         <i class="flaticon-381-television"></i>
                         <span class="nav-text">User</span>
@@ -238,6 +240,8 @@
                         <li><a href="{{route('show.user')}}">User List</a></li>
                     </ul>
                 </li>
+                @endcan
+                @can('batch_manage')
                 <li><a class="has-arrow ai-icon" href="#" aria-expanded="false">
                         <i class="flaticon-381-television"></i>
                         <span class="nav-text">Batch</span>
@@ -246,6 +250,7 @@
                         <li><a href="{{route('batchesShow')}}">Add Batch</a></li>
                     </ul>
                 </li>
+                @endcan
 
                 @can('category_manage')
                 <li><a class="has-arrow ai-icon" href="#" aria-expanded="false">
@@ -257,6 +262,7 @@
                     </ul>
                 </li>
                 @endcan
+                @can('subcategory_manage')
                 <li><a class="has-arrow ai-icon" href="#" aria-expanded="false">
                         <i class="flaticon-381-television"></i>
                         <span class="nav-text">Sub_Category</span>
@@ -265,7 +271,8 @@
                         <li><a href="{{route('SubCatShow')}}">Sub Category List</a></li>
                     </ul>
                 </li>
-
+                @endcan
+                @can('slider_manage')
                 <li><a class="has-arrow ai-icon" href="#" aria-expanded="false">
                         <i class="flaticon-381-television"></i>
                         <span class="nav-text">Slider</span>
@@ -274,6 +281,8 @@
                         <li><a href="{{ route('sliderShow') }}">Add Image</a></li>
                     </ul>
                 </li>
+                @endcan
+                @can('notice_manage')
                 <li><a class="has-arrow ai-icon" href="#" aria-expanded="false">
                         <i class="flaticon-381-television"></i>
                         <span class="nav-text">Notice</span>
@@ -282,6 +291,8 @@
                         <li><a href="{{ route('addNotice') }}">Add Notice</a></li>
                     </ul>
                 </li>
+                @endcan
+                @can('about_manage')
                 <li><a class="has-arrow ai-icon" href="#" aria-expanded="false">
                         <i class="flaticon-381-television"></i>
                         <span class="nav-text">About</span>
@@ -291,6 +302,8 @@
 
                     </ul>
                 </li>
+                @endcan
+                @can('subject_manage')
                 <li><a class="has-arrow ai-icon" href="#" aria-expanded="false">
                         <i class="flaticon-381-television"></i>
                         <span class="nav-text">Subject</span>
@@ -300,6 +313,7 @@
 
                     </ul>
                 </li>
+                @endcan
             </ul>
         </div>
     </div>

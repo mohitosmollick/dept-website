@@ -44,13 +44,19 @@ class RoleController extends Controller
         return back();
     }
 
-    function removeRole($id){
-        $all_user = User::find($id);
-        $all_role = Role::all();
-        return view('Role.RemoveRole',[
-            'all_user' => $all_user,
-            'all_role' => $all_role
+    function editPermission($id){
+        $permission = Permission::all();
+        $user_info = User::find($id);
+        return view('Role.EditRole',[
+            'permission' => $permission,
+            'user_info' => $user_info
         ]);
+    }
+
+    function PermissionUpdate(Request $request){
+        $users = User::find($request->user_id);
+        $users->syncPermissions($request->permission);
+        return back();
     }
 
 

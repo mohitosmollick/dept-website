@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Chairman;
 use App\Models\Event;
+use App\Models\Post;
 use App\Models\Slider;
 use App\Models\Subject;
 use App\Models\User;
@@ -31,7 +32,8 @@ class HomeController extends Controller
     {
         $slider = Slider::all();
         $about = Chairman::where('id',1)->first();
-        $event = Event::all();
+        $event = Event::latest()->take(4)->get();
+        $posts = Post::latest()->take(4)->get();
         $users = User::all()->count();
         $Subject = Subject::latest()->take(3)->get();
         return view('pages.index',[
@@ -39,7 +41,8 @@ class HomeController extends Controller
             'about' => $about,
             'event' => $event,
             'users' => $users,
-            'Subject' =>$Subject
+            'Subject' =>$Subject,
+            'posts' => $posts,
         ]);
     }
 }

@@ -3,22 +3,10 @@
 
 @section('content')
 
-    <section class="section breadcrumb-modern context-dark parallax-container" data-parallax-img="{{asset('view/assets/images/parallax-03.jpg')}}">
-        <div class="parallax-content section-30 section-sm-70">
-            <div class="shell">
-                <h2 class="veil reveal-sm-block">Your Profile</h2>
-                <div class="offset-sm-top-35">
-                    <ul class="list-inline list-inline-lg list-inline-dashed p d-flex justify-content-center">
-                        <li><a href="index.html">Home</a></li>
-                        <li>Registration Form</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
+
     <section class="section theme-background bg-cover section-70 section-md-114 bg-default">
         <div class="shell">
-            <h2>Grid Gallery</h2>
+            <h3>Grid Gallery</h3>
             <hr class="divider bg-madison">
             <div class="offset-top-60">
                 <div class="range range-30 range-xs-center" data-lightgallery="group">

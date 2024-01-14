@@ -4,38 +4,37 @@
         <div class="col-lg-4">
             <div class="card">
                 <div class="card-header">
-                    <h3>Add Role</h3>
+                    <h3>Add Permission</h3>
                     @if(session('success'))
                         <span class="text-success">{{session('success')}}</span>
                     @endif
                 </div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{route('roleAdd')}}">
+                    <form method="POST" action="{{route('PermissionUpdate')}}">
                         @csrf
                         <div class="form-group">
                             <label for="role">User</label>
-                            <input id="role" type="text"  class="form-control" readonly name="role" value="{{$all_user->name}}"  >
+                            <input id="role" type="text"  class="form-control" readonly name="role" value="{{$user_info->name}}"  >
                             @error('role') <span class="text-danger">{{$message}}</span> @enderror
-                            <input id="role" type="hidden" name="role" value="{{$all_user->id}}"  >
+                            <input  type="hidden" name="user_id" value="{{$user_info->id}}"  >
                         </div>
                         <div class="form-group">
                             <label >Add Role</label>
                             <br>
-                            @foreach($all_role as $role)
-                            <input  type="checkbox" name="role[]" value="{{$role->name}}" {{($all_user->name)?'checked':' '}} /> {{$role->name}}
+                            @foreach($permission as $permissions)
+                            <input  type="checkbox" {{($user_info->hasPermissionTo($permissions->name))?'checked':''}}
+                            name="permission[]" value="{{$permissions->name}}" /> {{$permissions->name}}
                                 <br>
                             @endforeach
                         </div>
                         <div class="form-group mt-2">
-                            <button type="submit"  class="btn btn-danger btn-sm">Save</button>
+                            <button type="submit"  class="btn btn-danger btn-sm">Update Permission</button>
                         </div>
                     </form>
                 </div>
             </div>
-
         </div>
-
     </div>
 
 
